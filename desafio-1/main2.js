@@ -1,17 +1,11 @@
 class Contenedor{
     #objetos;
-    constructor(){
-        this.#objetos = [];
+    constructor(id, title, price, thumbnail){
+        this.#objetos = [{id: id, title: title, price: price, thumbnail: thumbnail}];
     }
-    save(id, title, price, thumbnail){
-        let productos = 
-        {
-        id: id, 
-        title: title,
-        price: price,
-        thumbnail: thumbnail
-        };
-        this.#objetos.push(productos);
+    save(nuevoProducto){
+        this.#objetos.push(nuevoProducto);
+        return 'Producto agregado.'
     }
     getById(id){
         const productoBuscado = this.#objetos.find(elemento => elemento.id === id);
@@ -37,11 +31,31 @@ class Contenedor{
     }
 }
 
-const producto = new Contenedor;
+const producto = new Contenedor();
+
+const producto1 = {
+    id: 1,
+    title:"cafe",
+    price: 500,
+    thumbnail: "url"
+}
+const producto2 = {
+    id: 2,
+    title:"cocacola",
+    price: 250,
+    thumbnail: "url"
+}
+const producto3 = {
+    id: 3,
+    title:"pepsi",
+    price: 200,
+    thumbnail: "url"
+}
 
 // Agrego los productos al contenedor
-producto.save(1, "cafe", 500, "url");
-producto.save(2, "te", 150, "url");
+producto.save(producto1);
+producto.save(producto2);
+producto.save(producto3);
 
 //Busco los productos por su id
 console.log(producto.getById(1));
@@ -51,8 +65,7 @@ console.log(producto.getById(2));
 console.log(producto.getAll());
 
 //Elimino un producto por id
-producto.deleteById(2);
+producto.deleteById(3);
 
 //Elimino todos los productos
 // producto.deleteAll();
-
