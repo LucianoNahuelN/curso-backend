@@ -1,21 +1,22 @@
-const fs = require('fs')
+const fs = require('fs');
 
 class Contenedor {
     archivo
     objetos
     
-    constructor(nombre) {
-        this.archivo = nombre;
-        this.objetos = [];
+    constructor(rutaArchivo, id, title, price, thumbnail) {
+        this.archivo = rutaArchivo;
+        this.objetos = [{id: id, title: title, price: price, thumbnail: thumbnail}];
     }
     
-    async save(id, title, price, thumbnail) {
-        this.objetos.push({id: id, title: title, price: price, thumbnail: thumbnail});
+    async save(nuevoProducto) {
+        this.objetos.push(nuevoProducto);
         await fs.promises.writeFile(this.archivo, JSON.stringify(this.objetos));
+        return "Producto agregado";
     }
 
     async getById(id) {
-        this.objetos = JSON.parse(await fs.promises.readFile(this.archivos, 'utf-8'))
+        this.objetos = JSON.parse(await fs.promises.readFile(this.archivo, 'utf-8'))
         const productoBuscado = this.objetos.find(elemento => elemento.id === id);
         if(productoBuscado === undefined){
             return null;
@@ -26,18 +27,19 @@ class Contenedor {
     }
 
     async getAll() {
-        this.objetos = JSON.parse(await fs.promises.readFile(this.archivos, 'utf-8'))
+        this.objetos = JSON.parse(await fs.promises.readFile(this.archivo, 'utf-8'))
         return this.objetos
     }
 
     async deleteById(id) {
-        this.objetos = JSON.parse(await fs.promises.readFile(this.archivos, 'utf-8'))
+        this.objetos = JSON.parse(await fs.promises.readFile(this.archivo, 'utf-8'))
         for(let i = 0; i < this.objetos.length; i++){
             if(this.objetos[i].id === id){
                 this.objetos.splice(i,1);
             }
         }
         await fs.promises.writeFile(this.archivo, JSON.stringify(this.objetos));
+        return "Producto con id: "+ id + " eliminado";
     }
 
     async deleteAll() {
@@ -49,15 +51,39 @@ class Contenedor {
 
 
 async function test() {
-    const rutaArchivo = './productos.txt'
-    await fs.promises.writeFile(rutaArchivo, JSON.stringify(this.objetos))
+    const rutaArchivo = './curso-backend/desafio-2/productos.txt'
+    await fs.promises.writeFile(rutaArchivo, JSON.stringify([]))
 
     //creo el contenedor
     const producto = new Contenedor(rutaArchivo)
     
     //agrego productos
-    console.log(await producto.save(1, 'cafe', 500, 'url'))
-    console.log(await producto.save(2, 'te', 170,'url'))
+    const producto1 = {
+        id: 1,
+        title:"cafe",
+        price: 500,
+        thumbnail: "url"
+    }
+    const producto2 = {
+        id: 2,
+        title:"cocacola",
+        price: 250,
+        thumbnail: "url"
+    }
+    const producto3 = {
+        id: 3,
+        title:"pepsi",
+        price: 200,
+        thumbnail: "url"
+    }
+    const producto4 = {
+        id: 4,
+        title:"te",
+        price: 100,
+        thumbnail: "url"
+    }
+    console.log(await producto.save(producto1))
+    console.log(await producto.save(producto2))
     
     //Busco los productos por su id
     console.log(await producto.getById(1))
@@ -69,14 +95,15 @@ async function test() {
     console.log(await producto.getAll())
     
     //agrego mas productos
-    console.log(await producto.save(3, 'coca cola', 300,'url'))
-    console.log(await producto.save(4, 'pepsi', 250,'url'))
+    console.log(await producto.save(producto3))
+    console.log(await producto.save(producto4))
 
     //get all
     console.log(await producto.getAll())
     
    //Elimino todos los productos
     //await producto.deleteAll()
+    //console.log(await producto.getAll())
 }
 
 test()
