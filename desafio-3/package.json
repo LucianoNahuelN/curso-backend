@@ -1,0 +1,12 @@
+{
+  "name": "desafio-3",
+  "version": "1.0.0",
+  "description": "desafio clase 3",
+  "main": "main.js",
+  "scripts": {},
+  "author": "Luciano Nuñez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

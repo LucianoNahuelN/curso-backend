@@ -51,9 +51,9 @@ class Contenedor {
 
 
 async function test() {
-    const rutaArchivo = './curso-backend/desafio-2/productos.txt'
+    const rutaArchivo = 'productos.txt'
     await fs.promises.writeFile(rutaArchivo, JSON.stringify([]))
-
+    //./curso-backend/desafio-2/
     //creo el contenedor
     const producto = new Contenedor(rutaArchivo)
     
