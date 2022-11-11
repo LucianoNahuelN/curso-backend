@@ -1,1 +1,20 @@
-[{},{"id":1,"title":"cafe","price":500,"thumbnail":"url"},{"id":3,"title":"pepsi","price":200,"thumbnail":"url"},{"id":4,"title":"te","price":100,"thumbnail":"url"}]
+[
+  {
+    "id": 1,
+    "title": "cafe",
+    "price": 500,
+    "thumbnail": "url"
+  },
+  {
+    "id": 3,
+    "title": "pepsi",
+    "price": 200,
+    "thumbnail": "url"
+  },
+  {
+    "id": 4,
+    "title": "te",
+    "price": 100,
+    "thumbnail": "url"
+  }
+]
