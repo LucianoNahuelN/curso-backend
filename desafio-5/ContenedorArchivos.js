@@ -78,13 +78,6 @@ class ContenedorArchivos {
             throw new Error("Error al traer el producto random")
         }
     }
-    async update(objetos){
-        try {
-            await fs.promises.writeFile(this.archivo, JSON.stringify(objetos, null, 2));
-        } catch (error) {
-            throw new Error("Error al actualizar") 
-        }
-    }
 }
 
 module.exports = ContenedorArchivos

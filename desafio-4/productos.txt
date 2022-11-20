@@ -1,20 +1,38 @@
 [
   {
-    "id": 1,
+    "id": "379a79b4-d14a-4da0-8363-fbbd449325d0",
     "title": "cafe",
     "price": 500,
     "thumbnail": "url"
   },
   {
-    "id": 3,
-    "title": "pepsi",
-    "price": 200,
-    "thumbnail": "url"
+    "title": "pepsi grande",
+    "price": 300,
+    "thumbnail": "urlP",
+    "id": "4447ca69-4f07-402f-ba4d-13cb05bec1ba"
   },
   {
-    "id": 4,
-    "title": "te",
-    "price": 100,
-    "thumbnail": "url"
+    "title": "pepsi",
+    "price": 200,
+    "thumbnail": "urlP",
+    "id": "ac407018-2514-4902-8f58-bcbbf1d90cc3"
+  },
+  {
+    "title": "coca cola",
+    "price": 300,
+    "thumbnail": "urlP",
+    "id": "3e268be0-693c-4fa7-98c8-6ab2267c1709"
+  },
+  {
+    "title": "fernet",
+    "price": 1000,
+    "thumbnail": "url",
+    "id": "ab5acf03-1b07-4047-8e6f-a00cae15dcda"
+  },
+  {
+    "title": "vino",
+    "price": 1500,
+    "thumbnail": "url",
+    "id": "65986592-0954-4bbc-87d2-0c30c5a322e0"
   }
 ]

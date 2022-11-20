@@ -1,0 +1,11 @@
+{{!-- <h1>{{mensaje: }}</h1>
+<div>{{productos[0]}}</div> --}}
+{{#if productos.length }}
+<h1>{{mensaje}}</h1>
+{{#each productos}}
+<p>{{this.title}}</p>
+{{/each}}
+{{else }}
+<h1>No existen productos</h1>
+{{/if }}
+<a href="/">Agregar nuevo producto</a>
