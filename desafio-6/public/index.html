@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="center">
+        <h1>Desafio 5: <br> Agregar productos</h1>
+        <form id="formAgregarProducto" action="/productos" method ="post">
+            <div class="inputbox">
+                <input type="text" name="title" required="required">
+                <span>producto</span>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="price" required="required">
+                <span>precio</span>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="thumbnail" required="required">
+                <span>URL imagen</span>
+            </div>
+            <div class="inputbox">
+                <button type="submit">Agregar</button>
+            </div>
+        </form>
+        <a href="/productos">Lista productos</a>
+    </div>
+    <div id = "listaProductos"></div>
+    <div>
+        <h1>CHAT</h1>
+        <input id="inputAutor" type="text" placeholder="autor"><br>
+        <input id="inputMensaje" type="text" placeholder="mensaje"><br>
+        <button id="botonEnviar">enviar</button>
+        <div id="listaMensajes"></div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
