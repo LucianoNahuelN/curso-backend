@@ -1,0 +1,44 @@
+{{!-- {{#if productos.length }}
+<h1>{{mensaje}}</h1>
+{{#each productos}}
+<p>{{this.title}}</p>
+{{/each}}
+{{else }}
+<h1>No existen productos</h1>
+{{/if }}
+<a href="/">Agregar nuevo producto</a> --}}
+
+<div class="center">
+    <h1>{{mensaje}}</h1>
+    <div class="tabla">
+        {{#if productos}}
+            <table>
+                <tr>
+                    <th>nombre</th>
+                    <th>precio</th>
+                    <th>imagen</th>
+                </tr>
+                {{#each productos}}
+                    <tr>
+                        <td>{{this.title}}</td>
+                        <td>${{this.price}}</td>
+                        <td><img src={{this.thumbnail}} alt=""></td>
+                    </tr>
+                {{/each}}
+            </table>
+        {{else}}
+            <h3>No hay productos</h3>
+        {{/if}}
+    </div>
+    <hr>
+    <a href="/" class="btn btn-primary">Agregar Producto</a>
+</div>
+{{!-- {{#if productos.length }}
+<h1>{{mensaje}}</h1>
+{{#each productos}}
+<p>{{this.title}}</p>
+{{/each}}
+{{else }}
+<h1>No existen productos</h1>
+{{/if }}
+<a href="/">Agregar nuevo producto</a> --}}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "379a79b4-d14a-4da0-8363-fbbd449325d0",
+    "title": "cafe",
+    "price": 500,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/breakfast/coffee-cup.png"
+  },
+  {
+    "id": "379a79b4-d14a-4da0-8363-fbbd449325d1",
+    "title": "pepsi",
+    "price": 200,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Pepsi-Classic_256.png"
+  },
+  {
+    "id": "379a79b4-d14a-4da0-8363-fbbd449325d2",
+    "title": "te",
+    "price": 100,
+    "thumbnail": "https://cdn0.iconfinder.com/data/icons/interior-and-decor-vol-1-1/512/13-256.png"
+  },
+  {
+    "title": "coca cola",
+    "price": 250,
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Coca-Cola_256.png",
+    "id": "d98cb433-37ec-45c8-ad03-44b75bdf9fa9"
+  },
+  {
+    "title": "cerveza",
+    "price": "400",
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/drink-and-cocktails/206/Mexican_Beer-256.png",
+    "id": "43218f46-be53-4b02-8637-3f91cafa555b"
+  },
+  {
+    "title": "vino",
+    "price": "1200",
+    "thumbnail": "https://cdn0.iconfinder.com/data/icons/alcoholic/120/Chianti-256.png",
+    "id": "c99b4a28-af9d-4ed7-a98f-56f7e966e552"
+  },
+  {
+    "title": "sprite",
+    "price": "300",
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Sprite_256.png",
+    "id": "bbf9b9e3-8b77-4d91-9298-76f6e4f41901"
+  }
+]
