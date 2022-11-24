@@ -1,7 +1,8 @@
+const fs = require('fs')
 const express = require('express');
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
-const { webRouter } = require('./routers/webRouter.js');
+// const { webRouter } = require('./routers/webRouter.js');
 const { engine } = require('express-handlebars');
 
 const server = express();
@@ -19,49 +20,39 @@ server.engine('handlebars', engine())
 server.set('view engine', 'handlebars')
 
 //rutas
-server.use(webRouter)
+// server.use(webRouter)
 
 //socket ------------------------------------------------
+const Contenedor = require("./ContenedorArchivos")
+const contenedorProductos =  new Contenedor('productos.txt')
+const contenedorMensajes =  new Contenedor('mensajes.txt')
 
-async function read(name) {
-    try {
-        const result = JSON.parse(await fs.promises.readFile(`./${name}.txt`,'utf-8'))
-        return result
-    } catch (error) {
-        return([])
-    }
-}
+
 
 io.on('connection', async (socket) => {    
-    
-    const productos = await read("productos")
+    console.log("usuario conectado: " + socket.id)
+    const productos = await contenedorProductos.getAll()
 
     //productos
 
     io.sockets.emit('productosActualizados', productos)
 
-    socket.on('nuevoProducto', async producto => {
-        await read("productos")
-        .then(resultado => {
-            io.sockets.emit('productosActualizados', resultado);
-        })
+    socket.on('nuevoProducto', async nuevoProducto => {
+        await contenedorProductos.save(nuevoProducto);
+        io.sockets.emit('productosActualizados', productos);
+        
     })
 
     //mensajes
 
-    const mensajes = await read("mensajes")
+    const mensajes = await contenedorMensajes.getAll()
 
     io.sockets.emit('mensajesActualizados', mensajes)
 
     socket.on('nuevoMensaje', async mensaje => {
         mensaje.fecha = new Date().toLocaleString()
-        await read("mensajes")
-        .then(async resultado => {
-            const mensajes = resultado
-            mensajes.push(mensaje)
-            await fs.promises.writeFile(`./mensajes.txt`,JSON.stringify(mensajes))
-            io.sockets.emit('mensajesActualizados', resultado);
-        })
+        contenedorMensajes.save(mensaje)
+        io.sockets.emit('mensajesActualizados', mensajes);
     })
 
 })
