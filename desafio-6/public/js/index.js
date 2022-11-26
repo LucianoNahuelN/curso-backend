@@ -1,6 +1,6 @@
 const socket = io();
 
-//productos
+// //productos
 
 const formAgregarProducto = document.getElementById('formAgregarProducto')
 formAgregarProducto.addEventListener('submit', e => {
@@ -16,6 +16,9 @@ formAgregarProducto.addEventListener('submit', e => {
 
     // envio el producto al servidor via socket
     socket.emit('nuevoProducto', producto);
+    
+    // limpio el contenido de los campos del formulario
+    formAgregarProducto.reset()
 })
 
 // agrego manejador de eventos de tipo 'productos'
@@ -73,3 +76,4 @@ botonEnviar.addEventListener('click', e => {
         alert('ingrese algun mensaje')
     }
 })
+

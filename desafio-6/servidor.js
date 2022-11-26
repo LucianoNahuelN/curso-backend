@@ -28,7 +28,7 @@ const contenedorProductos =  new Contenedor('productos.txt')
 const contenedorMensajes =  new Contenedor('mensajes.txt')
 
 
-
+const personas = []
 io.on('connection', async (socket) => {    
     console.log("usuario conectado: " + socket.id)
     const productos = await contenedorProductos.getAll()
@@ -37,12 +37,11 @@ io.on('connection', async (socket) => {
 
     io.sockets.emit('productosActualizados', productos)
 
-    socket.on('nuevoProducto', async nuevoProducto => {
-        await contenedorProductos.save(nuevoProducto);
-        io.sockets.emit('productosActualizados', productos);
-        
+    socket.on('nuevoProducto', async producto => {
+        await contenedorProductos.save(producto);
+        io.sockets.emit('productosActualizados', await contenedorProductos.getAll());
     })
-
+    
     //mensajes
 
     const mensajes = await contenedorMensajes.getAll()
@@ -51,8 +50,8 @@ io.on('connection', async (socket) => {
 
     socket.on('nuevoMensaje', async mensaje => {
         mensaje.fecha = new Date().toLocaleString()
-        contenedorMensajes.save(mensaje)
-        io.sockets.emit('mensajesActualizados', mensajes);
+        await contenedorMensajes.save(mensaje)
+        io.sockets.emit('mensajesActualizados', await contenedorMensajes.getAll());
     })
 
 })

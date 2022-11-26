@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="main.css">
     <title>Document</title>
@@ -11,7 +14,7 @@
 <body>
     <div class="center">
         <h1>Desafio 5: <br> Agregar productos</h1>
-        <form id="formAgregarProducto" action="/productos" method ="post">
+        <form id="formAgregarProducto">
             <div class="inputbox">
                 <input type="text" name="title" required="required">
                 <span>producto</span>
@@ -28,10 +31,10 @@
                 <button type="submit">Agregar</button>
             </div>
         </form>
-        <a href="/productos">Lista productos</a>
     </div>
+    
     <div id = "listaProductos"></div>
-    <div>
+    <div id="chat">
         <h1>CHAT</h1>
         <input id="inputAutor" type="text" placeholder="autor"><br>
         <input id="inputMensaje" type="text" placeholder="mensaje"><br>

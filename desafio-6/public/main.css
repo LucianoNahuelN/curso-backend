@@ -2,9 +2,9 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     height: 100vh;
     background: linear-gradient(45deg, rgb(206, 47, 255), dodgerblue);
     font-family: sans-serif;
@@ -14,6 +14,9 @@ body {
     padding: 50px 50px;
     background: #fff;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .center h1 {
     font-size: 2em;
@@ -70,7 +73,9 @@ body {
   .center .inputbox:hover [type="submit"] {
     background: linear-gradient(45deg, rgb(203, 47, 255), dodgerblue);
   }
-  
+  #chat{
+    background-color: blue;
+  }
   .buttons {
     display: flex;
     align-items: flex-end;
