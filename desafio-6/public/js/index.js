@@ -45,7 +45,7 @@ async function manejarEventoProductos(productos) {
 
 function mostrarMensajes(mensajes) {
     const mensajesParaMostrar = mensajes.map(({ fecha, autor, texto }) => {
-        return `<div class="chat"><p>${fecha}</p><div class="msg"><h5>${autor}:</h5>&nbsp&nbsp<p>${texto}</p></div></div>`
+        return `<div class="chat"><p>${fecha}</p><div class="msg"><h5>${autor}:</h5><p>${texto}</p></div></div>`
     })
 
     const mensajesHtml = `
@@ -62,6 +62,7 @@ socket.on('mensajesActualizados', mensajes => {
     mostrarMensajes(mensajes)
 })
 
+
 const botonEnviar = document.getElementById('botonEnviar')
 botonEnviar.addEventListener('click', e => {
     const inputAutor = document.getElementById('inputAutor')
@@ -75,5 +76,6 @@ botonEnviar.addEventListener('click', e => {
     } else {
         alert('ingrese algun mensaje')
     }
+    document.getElementsByClassName("inputChat").reset();
 })
 

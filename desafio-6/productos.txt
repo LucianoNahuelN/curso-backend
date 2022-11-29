@@ -42,78 +42,8 @@
     "id": "bbf9b9e3-8b77-4d91-9298-76f6e4f41901"
   },
   {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "300",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "200",
-    "thumbnail": "url"
-  },
-  {
-    "title": "coca",
-    "price": "200",
-    "thumbnail": "url"
-  },
-  {
-    "title": "fernet",
-    "price": "1000",
-    "thumbnail": "url"
-  },
-  {
-    "title": "mani",
-    "price": "500",
-    "thumbnail": "url"
-  },
-  {
-    "title": "nachos",
-    "price": "100|",
-    "thumbnail": "url"
-  },
-  {
-    "title": "mani japones",
-    "price": "200",
-    "thumbnail": "url"
-  },
-  {
-    "title": "pan",
-    "price": "100",
-    "thumbnail": "url"
+    "title": "pizza",
+    "price": "700",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/street-food-and-food-trucker-1/64/pizza-fast-food-bake-bread-256.png"
   }
 ]
