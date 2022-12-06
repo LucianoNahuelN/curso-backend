@@ -1,6 +1,6 @@
 const socket = io();
 
-//productos
+// //productos
 
 const formAgregarProducto = document.getElementById('formAgregarProducto')
 formAgregarProducto.addEventListener('submit', e => {
@@ -16,6 +16,9 @@ formAgregarProducto.addEventListener('submit', e => {
 
     // envio el producto al servidor via socket
     socket.emit('nuevoProducto', producto);
+    
+    // limpio el contenido de los campos del formulario
+    formAgregarProducto.reset()
 })
 
 // agrego manejador de eventos de tipo 'productos'
@@ -42,7 +45,7 @@ async function manejarEventoProductos(productos) {
 
 function mostrarMensajes(mensajes) {
     const mensajesParaMostrar = mensajes.map(({ fecha, autor, texto }) => {
-        return `<div class="chat"><p>${fecha}</p><div class="msg"><h5>${autor}:</h5>&nbsp&nbsp<p>${texto}</p></div></div>`
+        return `<div class="chat"><p>${fecha}</p><div class="msg"><h5>${autor}:</h5><p>${texto}</p></div></div>`
     })
 
     const mensajesHtml = `
@@ -59,6 +62,7 @@ socket.on('mensajesActualizados', mensajes => {
     mostrarMensajes(mensajes)
 })
 
+
 const botonEnviar = document.getElementById('botonEnviar')
 botonEnviar.addEventListener('click', e => {
     const inputAutor = document.getElementById('inputAutor')
@@ -72,4 +76,6 @@ botonEnviar.addEventListener('click', e => {
     } else {
         alert('ingrese algun mensaje')
     }
+    document.getElementsByClassName("inputChat").reset();
 })
+

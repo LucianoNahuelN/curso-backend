@@ -2,10 +2,10 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: center; */
+    /* height: 100vh; */
     background: linear-gradient(45deg, rgb(206, 47, 255), dodgerblue);
     font-family: sans-serif;
   }
@@ -14,6 +14,9 @@ body {
     padding: 50px 50px;
     background: #fff;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .center h1 {
     font-size: 2em;
@@ -70,7 +73,39 @@ body {
   .center .inputbox:hover [type="submit"] {
     background: linear-gradient(45deg, rgb(203, 47, 255), dodgerblue);
   }
-  
+  #listaProductos{
+    
+    margin: 50px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  #chat{
+    background-color: blue;
+    width: 500px;
+    margin: 50px;
+    border: 2px solid #000;
+    border-radius: 10px;
+  }
+  #chat h1{
+    display: flex;
+    justify-content: center;
+  }
+  #chat .inputChat{
+    display: flex;
+    justify-content: center;
+    
+    width: 300px;
+    height: 50px;
+    margin-bottom: 10px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    font-size: 1.2em;
+  }
+  #centroBajo{
+    display: flex;
+    justify-content: center;
+  }
   .buttons {
     display: flex;
     align-items: flex-end;
