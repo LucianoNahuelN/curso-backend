@@ -31,7 +31,8 @@
   },
   {
     "title": "vino",
-    "price": 1200,
+    "price": 1800,
+>>>>>>> d61f4f55d28cdcb203ad7160d5afb160fbec8f5c
     "thumbnail": "url",
     "id": "65986592-0954-4bbc-87d2-0c30c5a322e0"
   }
