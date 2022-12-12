@@ -23,7 +23,8 @@ async function controllerDeleteCart({params: {id_cart}}, res) {
             res.status(404);
             res.json({ message: `no se encontró carrito con ese id (${id_cart})` });
         } else {
-            await containerCarts.deleteById(id_cart);
+            cart[wantedindex].products = [];
+            await containerCarts.update(cart)
             res.json({message: "exito al eliminar el carrito"});
         }
     } catch (error) {
@@ -34,28 +35,27 @@ async function controllerDeleteCart({params: {id_cart}}, res) {
 
 async function controllerPostCartProduct({body, params: {id_cart}}, res) {
     try {
-        const cart = await containerCarts.getAll();
-        const cartIndex = cart.findIndex(c => c.id === id_cart)
+        const carts = await containerCarts.getAll();
+        const cartIndex = carts.findIndex(c => c.id === id_cart)
         if (cartIndex === -1) {
             res.status(404);
             res.json({message: `No se encontró el carrito con el id: ${id_cart}`});
         } else {
-            const allProducts = await containerProducts.deleteAll();
+            const allProducts = await containerProducts.getAll();
             const newCartProduct = allProducts.find(c => c.id === body.id)
             if (!newCartProduct) {
                 res.status(404);
                 res.json({message: `No se encontró el producto con el id: ${body.id}`});
             } else {
-                const newCart = [...allProducts[cartIndex].products, newCartProduct]
-                allProducts[cartIndex].products = newCart
-                await update(allProducts)
+                carts[cartIndex].products.push(newCartProduct)
+                await containerCarts.update(carts)
                 res.status(201);
-                res.json(allProducts[cartIndex]);
+                res.json(carts[cartIndex].products);
             }
         }    
     } catch (error) {
         res.status(500);
-        res.json({message: "Error al agregar productos al carrito"})
+        res.json({message: "Error al agregar productos al carrito: " + error.message})
     }
 }
 
@@ -84,12 +84,16 @@ async function controllerDeleteCartProduct({params: {id_cart, id_prod}}, res) {
             res.status(404);
             res.json({message: `No se encontró el carrito con el id: ${id_cart}`});
         } else {
-            const products = cart[wantedindex].products
-            const newProducts = products.filter(o => o.id !== id_prod)
-            cart[wantedindex].products = newProducts
-            await update(cart)
+            const allProducts = cart[wantedindex].products
+            // allProducts.splice(o => o.id == id_prod)
+            for (let i = 0; i < allProducts.length; i++) {
+                if (allProducts[i].id === id_prod) {
+                    allProducts.splice(i, 1);
+                }
+            }
+            await containerCarts.update(cart)
             res.status(200);
-            res.json(cart[wantedindex]);
+            res.json(cart[wantedindex].products);
         }
     } catch (error) {
         res.status(500);
