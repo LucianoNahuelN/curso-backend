@@ -7,7 +7,7 @@ async function adminTest(req, res, next) {
         if (user.admin == true) {
             next()
         } else {
-            res.sendStatus(403)
+            res.status(403)
             res.json({message: `ruta (${req.url}) y metodo(${req.method}) no autorizados`})
         }
     } catch (error) {
