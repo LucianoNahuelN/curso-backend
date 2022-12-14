@@ -3,20 +3,36 @@
     "id": "407312bd-0b69-49e1-9470-2374e869ba43",
     "products": [
       {
-        "name": "coca",
-        "description": "coca cola",
-        "image": "http:coca.com",
-        "price": 140,
-        "id": "45b6c3e3-9483-4737-a28b-e47674b32d20"
+        "title": "pizza",
+        "price": "700",
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/street-food-and-food-trucker-1/64/pizza-fast-food-bake-bread-256.png",
+        "id": "ca82cd56-3eba-4ee5-9363-60ffe2d4f697"
+      },
+      {
+        "title": "pepsi",
+        "price": "250",
+        "thumbnail": "url-pepsi",
+        "id": "05c67afa-be8b-4af9-8a88-19f3a21cd43a"
       }
     ]
   },
   {
     "id": "1461b91d-64cb-4785-93bc-d31b78c98125",
+    "products": [
+      {
+        "title": "pepsi",
+        "price": "250",
+        "thumbnail": "url-pepsi",
+        "id": "05c67afa-be8b-4af9-8a88-19f3a21cd43a"
+      }
+    ]
+  },
+  {
+    "id": "6ebe7115-b976-4a40-a7b5-44603f6148eb",
     "products": []
   },
   {
-    "id": "74994c3c-79b4-4c2d-a0ab-a04bb38cd7bf",
+    "id": "8dc66694-6856-49c5-a6d5-63cef9d6ae25",
     "products": []
   }
 ]
