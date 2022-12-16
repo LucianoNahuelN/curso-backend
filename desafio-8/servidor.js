@@ -7,6 +7,7 @@ const server = express();
 const httpServer = new HttpServer(server);
 const io = new IOServer(httpServer);
 
+
 //middlewares
 server.use(express.json()) //para interpretar cuando enviamos json
 server.use(express.urlencoded({extended: true})) //para interpretar cuiando envio formulario
@@ -16,6 +17,13 @@ server.use(express.static('public'))
 //handlebars
 server.engine('handlebars', engine())
 server.set('view engine', 'handlebars')
+
+//TABLAS
+import { crearTablas } from './createTables.js'
+server.get('/', (req, res) => {
+    crearTablas()
+    res.end()
+})
 
 //rutas
 import { randomUUID as generarId } from 'crypto'
@@ -52,7 +60,6 @@ io.on('connection', async (socket) => {
     })
 
 })
-
 
 
 export function conectar(puerto) {
