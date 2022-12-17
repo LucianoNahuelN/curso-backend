@@ -54,7 +54,7 @@ io.on('connection', async (socket) => {
     io.sockets.emit('mensajesActualizados', mensajes)
 
     socket.on('nuevoMensaje', async mensaje => {
-        mensaje.fecha = new Date().toLocaleString()
+        mensaje.fecha = new Date()
         await contenedorDeMensajes.guardar(mensaje)
         io.sockets.emit('mensajesActualizados', await contenedorDeMensajes.recuperar());
     })
