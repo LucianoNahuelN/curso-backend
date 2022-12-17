@@ -7,7 +7,7 @@ export class ContenedorMysql {
     }
 
     async guardar(cosa) {
-        // this.cosa.id = generarId()
+        cosa.id = generarId()
         await this.cliente(this.tabla).insert(cosa);
     }
 
