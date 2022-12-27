@@ -1,0 +1,340 @@
+Terminal 1:
+mongod --dbpath "C:\Users\PC\Desktop\luciano\backend-coder\mongo" --auth
+Terminal 2:
+mongosh
+
+Creo usuarios:
+
+admin> db.createUser({user: "root",pwd: "mongopassword", roles: ["root"]})
+{ ok: 1 }
+admin> db.createUser({user: "pepe",pwd: "asd456",roles: [{role: "read", db: "ecommerce"}]})
+{ ok: 1 }
+
+Me conecto con usuario root:
+
+PC@DESKTOP-DJLRK76 MINGW64 ~/Desktop/luciano/backend-coder/curso-backend (main)
+$ mongosh -u root -p
+Enter password: *************
+Current Mongosh Log ID: 63aa4ebaa9bd789121aebe58
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.1
+Using MongoDB:          6.0.3
+Using Mongosh:          1.6.1
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2022-12-26T21:54:46.914-03:00: This server is bound to localhost. Remote systems will be 
+unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display   metrics about your deployment (disk utilization, CPU, operation statistics, etc).        
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product      
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+Creo la base ecommerce y las colecciones:
+
+test> use ecommerce
+switched to db ecommerce
+ecommerce> db.createCollection('productos')
+{ ok: 1 }
+ecommerce> db.createCollection('mensajes')
+{ ok: 1 }
+
+Agrego los documentos y los muestro:
+
+ecommerce> db.productos.insertOne({_id: 1, tittle: 'pepsi', price: 300, thumbnail: "https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Pepsi-Classic_256.png"})
+{ acknowledged: true, insertedId: 1 }
+ecommerce> db.productos.find()
+[
+  {
+    _id: 1,
+    tittle: 'pepsi',
+    price: 300,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Pepsi-Classic_256.png'
+  }
+]
+ecommerce> db.productos.insertOne({_id: 2, tittle: 'coca cola', price: 350, thumbnail: "https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Coca-Cola_256.png"})
+ecommerce> db.productos.find()
+[
+  {
+    _id: 1,
+    tittle: 'pepsi',
+    price: 300,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Pepsi-Classic_256.png'
+  },
+  {
+    _id: 2,
+    tittle: 'coca cola',
+    price: 350,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Coca-Cola_256.png'
+  }
+]
+ecommerce> db.productos.insertMany([{_id: 3, tittle: 'sprite', price: 350, thumbnail: "https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Sprite_256.png"},{_id: 4, tittle: 'vino', price: 2000, thumbnail: "https://cdn0.iconfinder.com/data/icons/alcoholic/120/Chianti-256.png"},{_id: 5, tittle: 'fanta', cerveza: 400, thumbnail: "https://cdn4.iconfinder.com/data/icons/drink-and-cocktails/206/Mexican_Beer-256.png"},{_id: 6, tittle: 'cafe', price: 500, thumbnail: "https://cdn3.iconfinder.com/data/icons/breakfast/coffee-cup.png"},{_id: 7, tittle: 'pizza muzzarella', price: 1600, thumbnail: "https://cdn0.iconfinder.com/data/icons/comida/pizza.png"},{_id: 8, tittle: 'pizza fugazzeta', price: 1800, thumbnail: "https://cdn0.iconfinder.com/data/icons/comida/pizza.png"},{_id: 9, tittle: 'lemon pie', price: 3500, thumbnail: "https://cdn0.iconfinder.com/data/icons/comida/lemonpie.png"},{_id: 10, tittle: 'torta brownie', price: 3500, thumbnail: "https://cdn0.iconfinder.com/data/icons/comida/tortabrownie.png"}])
+{
+  acknowledged: true,
+  insertedIds: { '0': 3, '1': 4, '2': 5, '3': 6, '4': 7, '5': 8, '6': 9, '7': 10 }
+}
+ecommerce> db.productos.find()
+[
+  {
+    _id: 1,
+    tittle: 'pepsi',
+    price: 300,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Pepsi-Classic_256.png'
+  },
+  {
+    _id: 2,
+    tittle: 'coca cola',
+    price: 350,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Coca-Cola_256.png'
+  },
+  {
+    _id: 3,
+    tittle: 'sprite',
+    price: 350,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Sprite_256.png'
+  },
+  {
+    _id: 4,
+    tittle: 'vino',
+    price: 2000,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/alcoholic/120/Chianti-256.png'
+  },
+  {
+    _id: 5,
+    tittle: 'fanta',
+    cerveza: 400,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/drink-and-cocktails/206/Mexican_Beer-256.png'
+  },
+  {
+    _id: 6,
+    tittle: 'cafe',
+    price: 500,
+    thumbnail: 'https://cdn3.iconfinder.com/data/icons/breakfast/coffee-cup.png'
+  },
+  {
+    _id: 7,
+    tittle: 'pizza muzzarella',
+    price: 1600,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/pizza.png'
+  },
+  {
+    _id: 8,
+    tittle: 'pizza fugazzeta',
+    price: 1800,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/pizza.png'
+  },
+  {
+    _id: 9,
+    tittle: 'lemon pie',
+    price: 3500,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/lemonpie.png'
+  },
+  {
+    _id: 10,
+    tittle: 'torta brownie',
+    price: 3500,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/tortabrownie.png'
+  }
+]
+ecommerce> db.mensajes.insertOne({_id: 1, autor:'luciano', texto: 'hola, buen dia', fecha: '29/11/2022, 01:23:05'})
+{ acknowledged: true, insertedId: 1 }
+ecommerce> db.mensajes.insertOne({_id: 2, autor:'yamila', texto: 'hola, como estas?', fecha: '29/11/2022, 01:24:05'})
+{ acknowledged: true, insertedId: 2 }
+ecommerce> db.mensajes.insertOne({_id: 3, autor:'luciano', texto: 'bien y vos?', fecha: '29/11/2022, 01:25:05'})
+{ acknowledged: true, insertedId: 3 }
+ecommerce> db.mensajes.insertOne({_id: 4, autor:'yamila', texto: 'bien, que hacias?', fecha: '29/11/2022, 01:26:05'})
+{ acknowledged: true, insertedId: 4 }
+ecommerce> db.mensajes.insertOne({_id: 5, autor:'luciano', texto: 'estaba mirando la tv y vos?', fecha: '29/11/2022, 01:27:05'})
+{ acknowledged: true, insertedId: 5 }
+ecommerce> db.mensajes.insertOne({_id: 6, autor:'yamila', texto: 'tambien, miraba los simpsons. Y vos?', fecha: '29/11/2022, 01:28:05'})
+{ acknowledged: true, insertedId: 6 }
+ecommerce> db.mensajes.insertOne({_id: 7, autor:'luciano', texto: 'miraba el partido de argentina', fecha: '29/11/2022, 01:29:05'})
+{ acknowledged: true, insertedId: 7 }
+ecommerce> db.mensajes.insertOne({_id: 8, autor:'yamila', texto: 'cuanto va?', fecha: '29/11/2022, 01:31:05'})
+{ acknowledged: true, insertedId: 8 }
+ecommerce> db.mensajes.insertOne({_id: 9, autor:'luciano', texto: 'gana argentina 1-0', fecha: '29/11/2022, 01:33:05'})
+{ acknowledged: true, insertedId: 9 }
+ecommerce> db.mensajes.insertOne({_id: 10, autor:'yamila', texto: 'que bien!', fecha: '29/11/2022, 01:35:05'})
+{ acknowledged: true, insertedId: 10 }
+ecommerce> db.mensajes.find()
+[
+  {
+    _id: 1,
+    autor: 'luciano',
+    texto: 'hola, buen dia',
+    fecha: '29/11/2022, 01:23:05'
+  },
+  {
+    _id: 2,
+    autor: 'yamila',
+    texto: 'hola, como estas?',
+    fecha: '29/11/2022, 01:24:05'
+  },
+  {
+    _id: 3,
+    autor: 'luciano',
+    texto: 'bien y vos?',
+    fecha: '29/11/2022, 01:25:05'
+  },
+  {
+    _id: 4,
+    autor: 'yamila',
+    texto: 'bien, que hacias?',
+    fecha: '29/11/2022, 01:26:05'
+  },
+  {
+    _id: 5,
+    autor: 'luciano',
+    texto: 'estaba mirando la tv y vos?',
+    fecha: '29/11/2022, 01:27:05'
+  },
+  {
+    _id: 6,
+    autor: 'yamila',
+    texto: 'tambien, miraba los simpsons. Y vos?',
+    fecha: '29/11/2022, 01:28:05'
+  },
+  {
+    _id: 7,
+    autor: 'luciano',
+    texto: 'miraba el partido de argentina',
+    fecha: '29/11/2022, 01:29:05'
+  },
+  {
+    _id: 8,
+    autor: 'yamila',
+    texto: 'cuento va?',
+    fecha: '29/11/2022, 01:31:05'
+  },
+  {
+    _id: 9,
+    autor: 'luciano',
+    texto: 'gana argentina 1-0',
+    fecha: '29/11/2022, 01:33:05'
+  },
+  {
+    _id: 10,
+    autor: 'yamila',
+    texto: 'que bien!',
+    fecha: '29/11/2022, 01:35:05'
+  }
+]
+
+Cuento los documentos:
+
+ecommerce> db.productos.countDocuments()
+11
+ecommerce> db.mensajes.countDocuments()
+10
+
+Busqueda con filtos:
+
+ecommerce> db.productos.find({price: {$lt:1000}})
+[
+  {        
+    _id: 1,
+    tittle: 'pepsi',
+    price: 300,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Pepsi-Classic_256.png'
+  },
+  {
+    _id: 2,
+    tittle: 'coca cola',
+    price: 350,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Coca-Cola_256.png' 
+  },
+  {
+    _id: 3,
+    tittle: 'sprite',
+    price: 350,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/soda_pop_caps/PNG/Sprite_256.png'    
+  },
+  {
+    _id: 5,
+    tittle: 'fanta',
+    cerveza: 400,
+    thumbnail: 'https://cdn4.iconfinder.com/data/icons/drink-and-cocktails/206/Mexican_Beer-256.png'
+  },
+  {
+    _id: 6,
+    tittle: 'cafe',
+    price: 500,
+    thumbnail: 'https://cdn3.iconfinder.com/data/icons/breakfast/coffee-cup.png'
+  }
+]
+ecommerce>  db.productos.find({price: {$gt:3000}})
+[
+  {
+    _id: 9,
+    tittle: 'lemon pie',
+    price: 3500,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/lemonpie.png'
+  },
+  {
+    _id: 10,
+    tittle: 'torta brownie',
+    price: 3500,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/tortabrownie.png'
+  }
+]
+ecommerce> db.productos.find({$and: [{price: {$gt:1000}}, {price: {$lt:3000}}]})
+[
+  {
+    _id: 4,
+    tittle: 'vino',
+    price: 2000,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/alcoholic/120/Chianti-256.png'       
+  },
+  {
+    _id: 7,
+    tittle: 'pizza muzzarella',
+    price: 1600,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/pizza.png'
+  },
+  {
+    _id: 8,
+    tittle: 'pizza fugazzeta',
+    price: 1800,
+    thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/pizza.png'
+  }
+]
+ecommerce> db.productos.find({},{"title":1}).sort({price: 1}).limit(1).skip(2)
+[ { _id: 2 } ]
+
+Agrego otro documento a productos:
+
+ecommerce> db.productos.insertOne({_id: 11, tittle: 'champagne baron b', price: 4000, thumbnail: 'https://cdn0.iconfinder.com/data/icons/comida/champagne.png'})
+{ acknowledged: true, insertedId: 11 }
+
+Actualizo documentos con stock:
+
+ecommerce> db.productos.updateMany({}, {$set: {stock: 100}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+ecommerce> db.productos.updateMany({"price": {$gt: 3000}},{$set: {"stock": 0}})        
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+
+Elimino documentos:
+
+ecommerce> db.productos.deleteMany({"price": {$lt: 1000}})
+{ acknowledged: true, deletedCount: 4 }
