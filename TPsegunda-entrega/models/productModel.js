@@ -15,14 +15,14 @@ function validateProduct(obj) {
   if (obj.price < 0) throw new Error('El precio del objeto NO puede ser negativo');
   if (!obj.description) throw new Error('No ha ingresado la descripción del producto');
   if (typeof obj.description !== 'string') throw new Error('La descripción tiene que ser una cadena de caracteres')
-  if (!obj.thumbnail) throw new Error('No ha ingresado la imágen del producto');
+  if (!obj.image) throw new Error('No ha ingresado la imágen del producto');
   return obj;
 }
 
 export async function saveProduct(obj) {
-  obj.id = randomUUID();
-  let object = validateProduct(obj)
   try {
+    obj.id = randomUUID();
+    let object = validateProduct(obj)
     object = await chosenProdsContainer.save(object);
     return object;
   } catch (error) {

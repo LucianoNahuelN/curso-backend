@@ -4,7 +4,7 @@ import { saveProduct, updateProductById, deleteProduct } from "../models/product
 
 async function controllerGetProducts(req, res){
     try {
-        products = await chosenProdsContainer.getAll()
+        const products = await chosenProdsContainer.getAll()
         res.json(products)
         res.status(200);
     } catch (error) {
@@ -19,7 +19,7 @@ async function controllerGetProductsWithId({params: {id}}, res){
             res.status(404);
             res.json({ message: `no se encontró producto con el id (${id})` });
         } else {
-            res.status(201);
+            res.status(200);
             res.json(wantedProduct);
         }
     } catch (error) {
@@ -53,6 +53,8 @@ async function controllerPutProductsWithId({body, params: {id}}, res) {
     // }
     const object = body;
     await updateProductById(id, object);
+    res.status(201);
+    res.json(object); //ver respuesta
    } catch (error) {
     res.status(500);
     res.json({message: "Error al cambiar producto"})
@@ -70,11 +72,19 @@ async function controllerDeleteProductsWithId({ params: { id } }, res) {
         //     res.json({message: "exito al eliminar el producto"});
         // }
         await deleteProduct(id);
-        res.sendStatus(200);
+        res.status(201);
+        res.json({message: "Exito al eliminar el producto"})
     } catch (error) {
         res.status(500);
         res.json({message: "Error al eliminar el producto"})
     }
 }
+function notFound(req, res) {
+    try {
+      res.status(404).json({ Message: 'Page not found', 'Wrong route': req.path, Method: req.method });
+    } catch (error) {
+      throw new Error('Error en el controlador notFound');
+    }
+  }
 
-export { controllerGetProducts, controllerGetProductsWithId, controllerPostProducts, controllerPutProductsWithId, controllerDeleteProductsWithId }
+export { controllerGetProducts, controllerGetProductsWithId, controllerPostProducts, controllerPutProductsWithId, controllerDeleteProductsWithId, notFound }

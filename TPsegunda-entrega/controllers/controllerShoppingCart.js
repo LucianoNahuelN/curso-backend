@@ -59,12 +59,17 @@ async function controllerPostCartProduct({body, params: {id_cart}}, res) {
         //     }
         // }    
         const id = body.id;
-        await saveProduct(id, id_cart);
-        res.status(200);
-        res.json({message: "producto agregado con exito"})
+        if (!id) {
+            res.status(404);
+            res.json({message: `No se encontró el producto`});
+        } else {
+            await saveProduct(id, id_cart);
+            res.status(200);
+            res.json({message: "producto agregado con exito"})
+        }
     } catch (error) {
         res.status(500);
-        res.json({message: "Error al agregar productos al carrito: "})
+        res.json({message: `Error al agregar productos al carrito con id: ${id_cart} `})
     }
 }
 
@@ -115,6 +120,7 @@ async function controllerDeleteCartProduct({params: {id_cart, id_prod}}, res) {
         await deleteOneProduct(id_cart, id_prod);
         res.status(200);
         res.json({message: "exito al eliminar el producto"});
+        
     } catch (error) {
         res.status(500);
         res.json({message: "Error al eliminar el producto del carrito"})

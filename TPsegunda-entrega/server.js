@@ -15,6 +15,10 @@ server.use('/api/products',routerApiProducts)
 server.use('/api', routerApiAdmin)
 server.use('/api', routerApiCart)
 
+//rutas no validas
+import { notFound } from './controllers/controllerProducts.js';
+server.all('*', notFound);
+
 export function connect(port) {
     return new Promise((resolve, reject) => {
         const serverConnect = server.listen(port, () => {

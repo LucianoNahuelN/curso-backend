@@ -3,7 +3,7 @@ const container =  new ContainerFiles('users.txt')
 
 async function adminTest(req, res, next) {
     try {
-        user = await container.getAll()
+        const user = await container.getAll()
         if (user.admin == true) {
             next()
         } else {

@@ -51,7 +51,7 @@ export class FirestoreContainer {
   async updateById(oldObject, obj) {
     let ref = {};
     try {
-      ref = await this.#collection.doc(oldObject.id).update(obj); // sin terminar
+      ref = await this.#collection.doc(oldObject.id).update(obj); 
     } catch (err) {
       console.log(err);
       throw new Error('Error al actualizar un dato en firestore');

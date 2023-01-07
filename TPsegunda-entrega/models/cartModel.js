@@ -27,6 +27,7 @@ export async function saveProduct(idProd, idCart) {
   try {
     const product = await chosenProdsContainer.getById(idProd); // busca el producto
     const cart = await chosenCartContainer.getById(idCart); // busca el carrito
+    if (!product) throw new Error('El producto no se encuentra')
     if (!cart) throw new Error('El carrito no se encuentra')
     newArray = cart.products.slice();
     newArray.push(product);
@@ -73,11 +74,19 @@ export async function deleteProducts(idCart) {
 export async function deleteOneProduct(idCart, idProd) {
   try {
     const cart = await chosenCartContainer.getById(idCart);
-    const array = cart.products.filter(ele => ele.id !== idProd);
-    const newCart = {
-      id: cart.id,
-      products: array.slice()
-    }
+    // const array = cart.products.filter(ele => ele.id !== idProd);
+    const allProducts = cart.products;
+   
+    for (let i = 0; i < allProducts.length; i++) {
+      if (allProducts[i].id === idProd) {
+          allProducts.splice(i, 1);
+      }
+  }
+  const newCart = {
+    id: cart.id,
+    products: allProducts
+  }
+  newCart.id = cart.id;
     await chosenCartContainer.updateById(cart, newCart);
   } catch (err) {
     console.log(err);

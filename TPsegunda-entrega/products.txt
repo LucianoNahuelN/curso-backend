@@ -2,19 +2,19 @@
   {
     "title": "pizza",
     "price": "700",
-    "thumbnail": "https://cdn3.iconfinder.com/data/icons/street-food-and-food-trucker-1/64/pizza-fast-food-bake-bread-256.png",
+    "image": "https://cdn3.iconfinder.com/data/icons/street-food-and-food-trucker-1/64/pizza-fast-food-bake-bread-256.png",
     "id": "ca82cd56-3eba-4ee5-9363-60ffe2d4f697"
   },
   {
     "title": "pepsi",
     "price": "250",
-    "thumbnail": "url-pepsi",
+    "image": "url-pepsi",
     "id": "05c67afa-be8b-4af9-8a88-19f3a21cd43a"
   },
   {
     "title": "fanta",
     "price": "250",
-    "thumbnail": "url-fanta",
+    "image": "url-fanta",
     "id": "ec1fccd2-f81e-44db-9450-e245c582b94b"
   }
 ]
